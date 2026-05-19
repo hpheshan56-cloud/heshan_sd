@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓 EXAM COUNTDOWN</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            /* Gaming Wallpaper එක */
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        /* මැද Box එක පට්ටම විනිවිද පේන (Transparent Glass) ලුක් එකකට හැදුවා */
+        .countdown-container {
+            background: rgba(0, 0, 0, 0.4); /* කළු පාට ගතිය ගොඩක් අඩු කරා */
+            padding: 40px 60px;
+            border-radius: 20px;
+            text-align: center;
+            /* Border එක සහ Shadow එක සරල කරා */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15); 
+            backdrop-filter: blur(6px); /* පසුබිම ලස්සනට බ්ලර් වෙන්න */
+            max-width: 800px;
+            width: 90%;
+        }
+
+        h1 {
+            font-size: 36px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #00ffcc;
+            margin-bottom: 10px;
+            text-shadow: none; /* Glow එක අයින් කරා */
+        }
+
+        .dates-info {
+            font-size: 16px;
+            color: #ccc;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        /* දින ගණන සරල Clean සුදු පාටක් කරා */
+        .main-days {
+            font-size: 64px;
+            font-weight: 800;
+            color: #ffffff; 
+            margin-bottom: 25px;
+            text-shadow: none; /* Glow එක අයින් කරා */
+            letter-spacing: 2px;
+        }
+
+        /* සිංහල කොටසත් Glow එක අයින් කරලා Clean කහ පාටක් කරා */
+        .divided-days {
+            font-size: 26px;
+            font-weight: 600;
+            color: #ffff00;
+            margin-bottom: 40px;
+            text-shadow: none; /* Glow එක අයින් කරා */
+        }
+
+        .footer-text {
+            font-size: 14px;
+            font-weight: bold;
+            color: #00ffcc;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="countdown-container">
+        <h1>EXAM COUNTDOWN 🚀</h1>
+        <div class="dates-info" id="dates-display">Today: -- | Target: 2026-08-10</div>
+        
+        <div class="main-days" id="days-left">DAYS LEFT: --</div>
+        <div class="divided-days" id="divided-display">එක් විෂයකට ඇති දින ගණන: --</div>
+        
+        <div class="footer-text">💪 STAY FOCUSED & YOU CAN HESHAN 😎⚡</div>
+    </div>
+
+    <script>
+        function calculateCountdown() {
+            const today = new Date();
+            const targetDate = new Date('2026-08-10');
+            
+            const timeDiff = targetDate - today;
+            const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+            
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const dd = String(today.getDate()).padStart(2, '0');
+            const todayString = `${yyyy}-${mm}-${dd}`;
+            
+            document.getElementById('dates-display').innerText = `Today: ${todayString} | Target: 2026-08-10`;
+            
+            if (daysLeft > 0) {
+                document.getElementById('days-left').innerText = `DAYS LEFT: ${daysLeft}`;
+                const dividedDays = Math.floor(daysLeft / 3);
+                document.getElementById('divided-display').innerText = `එක් විෂයකට ඇති දින ගණන: දින ${dividedDays} යි`;
+            } else {
+                document.getElementById('days-left').innerText = "IT'S EXAM TIME! 🎉";
+                document.getElementById('divided-display').innerText = "Good Luck!";
+            }
+        }
+
+        calculateCountdown();
+    </script>
+</body>
+</html>
